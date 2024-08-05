@@ -8,10 +8,10 @@ from selenium.webdriver.support import expected_conditions as ec
 
 class TestSignIn:
     dataset = [
-        ["https://stellarburgers.nomoreparties.site/", Locators.BUTTON_LOGIN_TO_ACCOUNT],
-        ["https://stellarburgers.nomoreparties.site/", Locators.PERSONAL_ACCOUNT],
-        ["https://stellarburgers.nomoreparties.site/register", Locators.BUTTON_SIGNIN_ON_REGISTER_PAGE],
-        ["https://stellarburgers.nomoreparties.site/forgot-password", Locators.BUTTON_SIGNIN_ON_REGISTER_PAGE]
+        [Data.URL, Locators.BUTTON_LOGIN_TO_ACCOUNT],
+        [Data.URL, Locators.PERSONAL_ACCOUNT],
+        [Data.URL_REGISTER, Locators.BUTTON_SIGNIN_ON_REGISTER_PAGE],
+        [Data.URL_FORGOT_PASSWORD, Locators.BUTTON_SIGNIN_ON_REGISTER_PAGE]
     ]
 
     @pytest.mark.parametrize('url, locator', dataset)
@@ -36,5 +36,3 @@ class TestSignIn:
         WebDriverWait(driver, Data.WAIT_TIME).until(ec.visibility_of_element_located(Locators.MAIN_PAGE_TITLE))
 
         assert driver.find_element(*Locators.MAIN_PAGE_TITLE).is_displayed()
-
-        driver.quit()

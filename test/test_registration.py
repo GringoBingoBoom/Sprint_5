@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as ec
 class TestRegistration:
 
     dataset = [
-        ["123456", Locators.SIGN_IN_TITLE],
-        ["12345", Locators.ALARM_WRONG_PASSWORD]
+        [Data.PASSWORD, Locators.SIGN_IN_TITLE],
+        [Data.WRONG_PASSWORD, Locators.ALARM_WRONG_PASSWORD]
     ]
 
     @pytest.mark.parametrize('password, locator', dataset)

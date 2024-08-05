@@ -27,9 +27,15 @@ class Locators:
     PROFILE = (By.XPATH, "//a[text()='Профиль']")  # Профиль
 
     CONSTRUCTOR = (By.XPATH, "//p[text()='Конструктор']")  # Конструктор
-    LOGO = (By.XPATH, "//div[@class='AppHeader_header__logo__2D0X2']")  # Логотип
+    LOGO = (By.XPATH, "//div[contains(@class, 'AppHeader_header__logo')]")  # Логотип
     BUTTON_EXIT = (By.XPATH, "//button[text()='Выход']")  # кнопка Выход из личного кабинета
 
     BUNS = (By.XPATH, "//span[text()='Булки']")  # Конструктор Булки
     SAUCES = (By.XPATH, "//span[text()='Соусы']")  # Конструктор Соусы
     FILLINGS = (By.XPATH, "//span[text()='Начинки']")  # Конструктор Начинки
+
+    BUNS_PARENT = (By.XPATH, "//div[span[text()='Булки'] and contains(@class, 'current')]")  # Конструктор Булки родитель
+    SAUCES_PARENT = (By.XPATH, "//div[span[text()='Соусы'] and contains(@class, 'current')]")  # Конструктор Соусы родитель
+    FILLINGS_PARENT = (By.XPATH, "//div[span[text()='Начинки'] and contains(@class, 'current')]")  # Конструктор Начинки родитель
+
+

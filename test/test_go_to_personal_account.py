@@ -8,9 +8,9 @@ import time
 
 class TestPersonalAccount:
     dataset = [
-        ["https://stellarburgers.nomoreparties.site/", Locators.CONSTRUCTOR],
-        ["https://stellarburgers.nomoreparties.site/", Locators.LOGO],
-        ["https://stellarburgers.nomoreparties.site/login", Locators.BUTTON_EXIT]
+        [Data.URL, Locators.CONSTRUCTOR, Locators.MAIN_PAGE_TITLE],
+        [Data.URL, Locators.LOGO, Locators.MAIN_PAGE_TITLE],
+        [Data.URL_LOGIN, Locators.BUTTON_EXIT, Locators.SIGN_IN_TITLE]
     ]
 
     def test_go_to_personal_account(self, driver, login):
@@ -19,10 +19,11 @@ class TestPersonalAccount:
 
         WebDriverWait(driver, Data.WAIT_TIME).until(ec.visibility_of_element_located(Locators.PROFILE))
 
-        assert driver.current_url == "https://stellarburgers.nomoreparties.site/account/profile"
+        assert driver.current_url == Data.URL_PROFILE
 
-    @pytest.mark.parametrize('target_url, locator', dataset)
-    def test_from_personal_account_to_constructor_to_logo_to_exit(self, driver, login, target_url, locator):
+    @pytest.mark.parametrize('target_url, locator, locator_target', dataset)
+    def test_from_personal_account_to_constructor_to_logo_to_exit(self, driver, login, target_url, locator,
+                                                                  locator_target):
         personal_account_button = driver.find_element(*Locators.PERSONAL_ACCOUNT)
         personal_account_button.click()
 
@@ -31,6 +32,6 @@ class TestPersonalAccount:
         constructor_button = driver.find_element(*locator)
         constructor_button.click()
 
-        time.sleep(3)
+        WebDriverWait(driver, Data.WAIT_TIME).until(ec.visibility_of_element_located(locator_target))
 
         assert driver.current_url == target_url
